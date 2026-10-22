@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="uz-Cyrl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ички қувонч манбаи</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant:wght@500;600;700&family=Alegreya:ital,wght@0,400;0,500;1,400&display=swap">
+<style>
+/* Layout: bright sky with twinkling stars and a sun glow; cards are gold-framed celestial plates with a numbered medallion. Single deliberate light look. */
+:root{
+  --sky-top:#2f8fe0; --sky-mid:#5cb8f7; --sky-low:#b4e2ff;
+  --plate:rgba(255,255,255,.88); --ink:#13304a; --muted:#46627c;
+  --gold:#c9962a; --gold-hi:#f3d58a; --gold-ink:#8a6110;
+  --nav:rgba(255,255,255,.55);
+  --display:"Cormorant","Cormorant Garamond",Georgia,serif;
+  --body:"Alegreya",Georgia,"Times New Roman",serif;
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--sky-low)}
+body{margin:0;min-height:100vh;color:var(--ink);font:400 1.06rem/1.68 var(--body);
+  background:linear-gradient(180deg,var(--sky-top) 0%,var(--sky-mid) 35%,var(--sky-low) 100%) fixed;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--sky-top)}
+#stars{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.glow{position:fixed;left:50%;top:-30vh;width:120vw;height:70vh;transform:translateX(-50%);z-index:0;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(255,250,225,.75),rgba(255,240,190,.25) 55%,transparent)}
+.wrap{position:relative;z-index:1;max-width:46rem;margin:0 auto;padding-block:3.5rem 4rem}
+
+header{text-align:center;display:grid;justify-items:center;gap:1rem;margin-bottom:2.2rem}
+.orbit{width:5.5rem;height:5.5rem}
+h1{font:600 clamp(2.5rem,8vw,4.2rem)/1.02 var(--display);margin:0;text-wrap:balance;color:#fff;
+  letter-spacing:.01em;text-shadow:0 0 18px rgba(255,236,170,.9),0 2px 14px rgba(19,48,74,.25)}
+.rule{display:flex;align-items:center;gap:.7rem;color:var(--gold-hi);font-size:.9rem}
+.rule::before,.rule::after{content:"";width:4.5rem;height:1px;background:linear-gradient(90deg,transparent,var(--gold-hi))}
+.rule::after{transform:scaleX(-1)}
+
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem;
+  padding:.7rem .7rem;margin-bottom:1.8rem;background:var(--nav);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.7);border-radius:14px;box-shadow:0 6px 24px rgba(19,48,74,.12)}
+nav a{font:700 .98rem/1 var(--display);color:var(--ink);text-decoration:none;width:2.2rem;height:2.2rem;display:inline-grid;place-items:center;
+  border-radius:50%;background:#fff;border:1px solid var(--gold-hi);font-variant-numeric:lining-nums tabular-nums;transition:transform .2s,background .2s}
+nav a:hover,nav a:focus-visible{background:var(--gold-hi);transform:translateY(-2px);outline:none}
+nav button{font:600 .95rem/1 var(--body);color:#fff;border:0;border-radius:999px;padding:0 1.1rem;height:2.2rem;cursor:pointer;
+  background:linear-gradient(180deg,#dcae45,var(--gold-ink));box-shadow:0 0 0 1px rgba(255,255,255,.6) inset,0 4px 14px rgba(138,97,16,.35)}
+nav button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+
+.deck{display:grid;gap:1.6rem}
+.card{position:relative;background:var(--plate);border-radius:14px;padding:1.8rem 2rem 1.9rem;scroll-margin-top:6.5rem;
+  border:1px solid var(--gold);box-shadow:0 0 0 5px rgba(255,255,255,.55),0 0 0 6px var(--gold-hi),0 14px 36px rgba(19,48,74,.16);
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.card::before,.card::after{content:"✦";position:absolute;top:.6rem;color:var(--gold);font-size:.95rem;line-height:1}
+.card::before{left:.8rem}.card::after{right:.8rem}
+.head{display:grid;grid-template-columns:auto 1fr;gap:1.1rem;align-items:center;padding-bottom:1rem;margin-bottom:.4rem;
+  border-bottom:1px solid rgba(201,150,42,.35)}
+.medal{width:4.2rem;height:4.2rem;border-radius:50%;display:grid;place-items:center;
+  background:radial-gradient(circle at 35% 30%,#fff7da,var(--gold-hi) 45%,var(--gold) 100%);
+  box-shadow:0 0 0 3px #fff,0 0 0 4px var(--gold),0 0 22px rgba(243,213,138,.9)}
+.medal span{font:700 1.9rem/1 var(--display);color:var(--gold-ink);font-variant-numeric:lining-nums}
+.ttl{min-width:0}
+.ttl h2{font:700 1.8rem/1.08 var(--display);margin:0;text-wrap:balance}
+.sub{font:500 .8rem/1.4 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--gold-ink);margin:.4rem 0 0}
+.txt{min-width:0}
+.txt p{margin:.85rem 0 0}
+.txt p.q{font-style:italic;color:var(--muted);border-left:2px solid var(--gold);padding-left:.9rem}
+.card.hl{box-shadow:0 0 0 5px rgba(255,255,255,.8),0 0 0 7px var(--gold),0 0 50px rgba(255,226,140,.95),0 14px 36px rgba(19,48,74,.18)}
+footer{position:relative;z-index:1;text-align:center;color:var(--gold-ink);font-size:1.3rem;padding-bottom:2rem}
+
+@media (max-width:520px){
+  .card{padding:1.4rem 1.2rem 1.4rem}
+  .medal{width:3.4rem;height:3.4rem}.medal span{font-size:1.55rem}
+  .ttl h2{font-size:1.5rem}
+  nav a{width:2rem;height:2rem;font-size:.9rem}
+}
+@media (prefers-reduced-motion:no-preference){
+  html{scroll-behavior:smooth}
+  .card{transition:box-shadow .5s}
+  .orbit .ring{transform-origin:50% 50%;animation:spin 40s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+}
+</style>
+</head>
+<body>
+
+<canvas id="stars" aria-hidden="true"></canvas>
+<div class="glow" aria-hidden="true"></div>
+<div class="wrap">
+  <header>
+    <svg class="orbit" viewBox="0 0 100 100" aria-hidden="true">
+      <circle cx="50" cy="50" r="18" fill="#fff6d6" stroke="#c9962a" stroke-width="1.5"/>
+      <g class="ring" fill="none" stroke="#fff" stroke-width="1.2" opacity=".9">
+        <circle cx="50" cy="50" r="34" stroke-dasharray="2 5"/>
+        <circle cx="84" cy="50" r="3.2" fill="#f3d58a" stroke="none"/>
+        <circle cx="16" cy="50" r="2" fill="#fff" stroke="none"/>
+      </g>
+      <path d="M50 38 L52.5 47.5 L62 50 L52.5 52.5 L50 62 L47.5 52.5 L38 50 L47.5 47.5Z" fill="#c9962a"/>
+    </svg>
+    <h1>Ички қувонч манбаи</h1>
+    <div class="rule" aria-hidden="true">✦</div>
+  </header>
+  <nav aria-label="Карталар"><a href="#k19">19</a><a href="#k2">2</a><a href="#k11">11</a><a href="#k20">20</a><a href="#k1">1</a><a href="#k10">10</a><a href="#k3">3</a><a href="#k12">12</a><a href="#k21">21</a><a href="#k4">4</a><a href="#k13">13</a><a href="#k22">22</a><a href="#k5">5</a><a href="#k14">14</a><a href="#k6">6</a><a href="#k7">7</a><a href="#k15">15</a><a href="#k16">16</a><a href="#k8">8</a><a href="#k17">17</a><a href="#k9">9</a><a href="#k18">18</a><a href="#k0">0</a><button type="button" id="draw">Карта танлаш</button></nav>
+  <main class="deck">
+<article class="card" id="k19">
+<div class="head"><div class="medal"><span>19</span></div><div class="ttl"><h2>ЖОНЛИ ҚУЁШ</h2></div></div>
+<div class="txt"><p>Бу — ёруғлик, қувонч ва юксак англаш рамзи бўлиб, у иллюзиялардан ўтиб, маърифат ҳолатига эришишга ёрдам беради.</p>
+<p>19-карта руҳий камолот йўлини ва ўзининг чексиз ёруғлик манбаи билан боғлиқлигини англашни кўрсатади.</p>
+<p>У руҳий ва моддий олам ўртасидаги кўприк бўлиб, ички бойиш ҳамда Руҳ вазифасини амалга ошириш учун ташқи макондаги воқеа-ҳодисаларни шакллантириш имкониятларини беради.</p></div></article>
+<article class="card" id="k2">
+<div class="head"><div class="medal"><span>2</span></div><div class="ttl"><h2>КОСМИК ОНА</h2><p class="sub">МАТЕРИЯ</p></div></div>
+<div class="txt"><p>Бу карта Ягона, Барча Нарсани Қамраб Олувчи Борлиқ ва Космик Онгнинг Ягона Реаллик сифатидаги моҳиятини очиб беради.</p>
+<p>У Она — бутун мавжудотнинг манбаи бўлган нур эканини ва бу нур модданинг ҳар бир заррасида намоён бўлишини эслатади.</p>
+<p>Ўз кучларингизни — интуициянгизни, олдиндан ҳис қилиш қобилиятингизни англанг.</p>
+<p>Космик Она харитаси тушуниш, сабр-тоқат, меҳр-шафқат ва кечира олиш қобилиятини ифодалайди.</p>
+<p>Карта онг остига ва ўз орзуларингизга эътибор қаратиш зарурлигини таъкидлайди.</p>
+<p>Бу карта билимларга элтувчи «Самовий дарвозалар»ни — ахборот майдонига кириш имкониятини ифодалайди.</p></div></article>
+<article class="card" id="k11">
+<div class="head"><div class="medal"><span>11</span></div><div class="ttl"><h2>ПОТЕНЦИАЛ</h2><p class="sub">РУҲ КУЧИ</p></div></div>
+<div class="txt"><p>Руҳ кучи мўъжизаларни болаларга хос сеҳрли тафаккурдан эмас, балки муқаддас, илоҳий Қалбдан намоён қилади.</p>
+<p>Ушбу картанинг асосий калит сўзлари: истеъдод ва сахийлик.</p>
+<p>Сизга Руҳ кучини намоён этиш, ўзингизнинг салбий жиҳатларингизни ижобий томонга ўзгартириш, хусусиятларингизни трансформация қилиш ва болаларга хос позициядан ҳаётга катталарча ёндашувга ўтиш имконияти берилади.</p>
+<p class="q">«Руҳ кучи» картаси сизни Қалб йўлига йўналтиради, чунки Руҳ кучи сизнинг муқаддас Қалбингизда жойлашган.</p>
+<p>Эътиборингизни Қалбингизга қаратинг ва ҳақиқатга тик қаранг:</p>
+<p class="q">«Мен нимани трансформация қилишим керак?»</p></div></article>
+<article class="card" id="k20">
+<div class="head"><div class="medal"><span>20</span></div><div class="ttl"><h2>РУҲ МАКОНИ</h2></div></div>
+<div class="txt"><p>Осмоннинг энг сирли ва юксак қисмларидан бирида Муҳаббат Саройи деб аталувчи Қаср жойлашган.</p>
+<p>Бу ерда энг чуқур сир-асрорлар содир бўлади, бу ерда Подшоҳ Руҳлар жамланган.<br>Бу ерда ҳар бир Подшоҳ муқаддас ва муборакдир.</p>
+<p>Бу ерда барча ягона Руҳнинг Севги иплари билан бир-бирига боғланган.</p>
+<p>Бу жой — Руҳнинг Уйидир. Руҳ айнан шу ердан мавжудликни олади.</p></div></article>
+<article class="card" id="k1">
+<div class="head"><div class="medal"><span>1</span></div><div class="ttl"><h2>КОСМИК ОТА</h2><p class="sub">ЯГОНА ЯРАТУВЧИ</p></div></div>
+<div class="txt"><p>Сизга юқоридан мадад бор, сизни ҳимоя қилишади.</p>
+<p>Сиз энг азиз орзу-истакларингизнинг амалга ошишига ва энг дадил юксакликларга эришишга умид боғлашингиз мумкин.</p>
+<p>Сизнинг салоҳиятингиз жуда катта. Сиз одамлар учун кўп нарса бера оласиз.</p>
+<p>Руҳинг миссиясини кашф этинг, ўзингизнинг асл моҳиятингиз Қалбига чуқур шўнғинг.</p>
+<p>Руҳ миссияси — бу очиқ йўллар, бу сизнинг режангиз, бу шундай ҳаётий сценарийларки, уларда барча нарса осонлик билан насиб этади ва ҳаёт роҳат-фароғатда англанади.</p></div></article>
+<article class="card" id="k10">
+<div class="head"><div class="medal"><span>10</span></div><div class="ttl"><h2>ОЛАМНИНГ ЯРАЛИШИ</h2><p class="sub">ЭФИР МАКОНИДАГИ ТАЯНЧ НУҚТА</p></div></div>
+<div class="txt"><p>10-харита Илоҳий ва моддий оламлар ўртасидаги нозик чегарани ифодалайди. Ушбу икки оламни ягона Жаҳон Руҳида бирлаштиради.</p>
+<p>Бу — абадий ҳаракат, ўтишлар ва имкониятлар картаси бўлиб, ўзгаришларни қабул қилиш ва ҳаётнинг янги даражаси сари интилиш зарурлигини кўрсатади.</p>
+<p>Ўз саъй-ҳаракатларингиз самарасини йиғиб олинг.</p></div></article>
+<article class="card" id="k3">
+<div class="head"><div class="medal"><span>3</span></div><div class="ttl"><h2>ИЛК ЯРАЛИШ</h2><p class="sub">НУР АСОСИ</p></div></div>
+<div class="txt"><p>Ушбу карта ақл-идрок билан мувозанатга келтирилган олий қудратни ифодалайди. Янги ғояларнинг туғилиши ва уларни ҳаётга татбиқ этиш зарурлигини англатади.</p>
+<p>Бу — коинот миқёсидаги ижодий севги харитаси.</p>
+<p>Табиатнинг туганмас қудрати — бу Ҳаётнинг ўз харитасидир. У ҳаётни ўз ўрнидан, ўз моҳиятини англаган ҳолда идрок этишни ифодалайди.<br>Ушбу харита Яратувчи сизни қўлингиздан тутиб бораётганини, тўғри йўлда эканингизни эслатади.</p>
+<p>Эскиликка ёпишиб олманг, янги томон қадам ташланг.</p></div></article>
+<article class="card" id="k12">
+<div class="head"><div class="medal"><span>12</span></div><div class="ttl"><h2>ИНИЦИАЦИЯ</h2><p class="sub">РУҲИЙ УЙҒОНИШ</p></div></div>
+<div class="txt"><p>Илоҳийлик билан бирлашиш ва худбинликдан воз кечиш чуқур руҳий англаш йўлини очади.</p>
+<p>Ривожланиш учун оламни яхлит ҳолда қабул қилиш, кибр ва иллюзиялардан халос бўлиш зарур. Трансформация ва янгиланиш жараёнларига йўл очиб, уларнинг сизни олий мақсад сари етаклашига имкон беринг.</p>
+<p>Сизнинг таянчингиз — Осмон, сизнинг йўлингиз эса — руҳий эволюция.</p></div></article>
+<article class="card" id="k21">
+<div class="head"><div class="medal"><span>21</span></div><div class="ttl"><h2>ҲАҚИҚАТ САРИ ЙЎЛ</h2></div></div>
+<div class="txt"><p>Ушбу карта дадил ташаббус ва жасорат талаб қиладиган ишларингизда муваффақиятни башорат қилади.</p>
+<p>Шубҳаларни четга суринг ва ҳаракат қилинг.</p>
+<p>Ҳақиқат сари йўлда сиз онгнинг янги ҳолатларини бошдан кечирасиз, кутилмаган воқеаларга дуч келасиз, таваккал қилишга тайёр бўласан, янги тажрибаларни излайсан ва саргузаштларни бошдан кечирасан.</p>
+<p>Бу — инсоннинг Индивидуал Руҳидан Худонинг Ягона Руҳига олиб борувчи йўл.</p></div></article>
+<article class="card" id="k4">
+<div class="head"><div class="medal"><span>4</span></div><div class="ttl"><h2>МАКОН</h2><p class="sub">ЖАҲОН УЙҒУНЛИГИ</p></div></div>
+<div class="txt"><p>Ушбу карта адолатга бўлган муҳаббатни, келажакни кўра билишни ва ирода кучини ифодалайди. У ҳиссий ҳолатлар орқали эмоциялар билан ишлашни англатади.</p>
+<p>Ақлни тинчлантириш учун амалиётларни бажаринг, хотиржамлик бағишловчи медитацияларни тингланг, нафас олиш машқлари билан шуғулланинг, спорт билан машғул бўлинг ва табиат қўйнида сайр қилинг.</p>
+<p>Ақл сукутга чўмганида, ушбу картага диққатингизни қаратиб, уни тафаккур билан кузатинг. Шунда сиз ўз Жавобингизни оласиз.</p></div></article>
+<article class="card" id="k13">
+<div class="head"><div class="medal"><span>13</span></div><div class="ttl"><h2>ЭНЕРГИЯНИНГ ТРАНСФОРМАЦИЯСИ</h2></div></div>
+<div class="txt"><p>Оламдаги барча нарса илоҳий уйғунликка бўйсунган ҳолда абадий ҳаракат ва трансформация жараёнида бўлади.</p>
+<p>Ўзгаришлар муқаррар. Бу ўзгаришлар янгиланиш манбаига айланадими ёки турғунликка олиб келадими — бу сизнинг ўз қадр-қимматингизни, ҳалоллигингизни ва қалб поклигини сақлай олишингизга боғлиқ.</p></div></article>
+<article class="card" id="k22">
+<div class="head"><div class="medal"><span>22</span></div><div class="ttl"><h2>ЖАҲОН РУҲИ</h2></div></div>
+<div class="txt"><p class="q">«Жаҳон Руҳи» картаси тинчлик, уйғунлик, гўзаллик ва барқарорликни башорат қилади.<br>Бу — ҳаётингдаги барча ташаббусларингизни амалга ошириш учун қулай бўлган ажойиб босқич. Чегараларни кенгайтириш даври.<br>Бу — гўё ҳаёт оқимлари сизни ҳаёт тўлқинлари узра парвоз қилишингда қўллаб-қувватлаётгандек, парвоз, муҳаббат ва енгиллик ҳолатидир.</p>
+<p>Коинот сиз учун барча нарсани рўёбга чиқаришга тайёр.</p>
+<p>Ўзгаришларни қарши олиш учун Қалбингизни очинг.</p></div></article>
+<article class="card" id="k5">
+<div class="head"><div class="medal"><span>5</span></div><div class="ttl"><h2>РУҲ ДОНОЛИГИ</h2><p class="sub">ЙЎЛБОШЧИ. УСТОЗ</p></div></div>
+<div class="txt"><p>Ушбу карта онгингизни кенгайтириш ва Руҳингизни бойитиш учун билим олишингиз зарурлигини англатади.</p>
+<p>Руҳий билимлар орқали Сиз Илоҳий баракага эришишингиз мумкин.</p>
+<p>Сизда зарур билимларни эгаллаш учун куч ва энергия бор. Энг муҳими, бу энергияни беҳуда сарфлаб юбормаслик.</p>
+<p>Карта маслаҳати: ривожланинг, янги билимларни эгалланг.</p>
+<p>Чуқур билимларнинг фаоллашуви.</p></div></article>
+<article class="card" id="k14">
+<div class="head"><div class="medal"><span>14</span></div><div class="ttl"><h2>АБАДИЙ ЯНГИЛАНИШ</h2></div></div>
+<div class="txt"><p>Сиз мавжуд бўлган барча нарсанинг бир қисмисиз ва айни пайтда Илоҳий ибтидони ҳам ўзингизда мужассам этгансиз.</p>
+<p>Иллюзиялар ва ҳис-туйғулар кишанларини ўзини назорат қилиш, ишонч ва Олий Куч билан бирликка эришиш сари фаол интилиш орқали нурга айлантириш мумкин.</p>
+<p>Ўзингизни ортиқча нарсалардан озод қилинг, куч-қувватингизни тикланг ва ўз руҳий йўлингиздан борган ҳолда уйғунликка интилиб яшaнг.</p>
+<p>Ўзингизга ва сизни мақсадингиз сари етаклаётган Олий Кучларга ишонинг.</p></div></article>
+<article class="card" id="k6">
+<div class="head"><div class="medal"><span>6</span></div><div class="ttl"><h2>СЕВГИ</h2><p class="sub">МУҚАДДАС ҚАЛБ</p></div></div>
+<div class="txt"><p>Севги — азоб-уқубатлардан халос этишга қодир бўлган ягона кучдир.</p>
+<p>Муқаддас Қалбингизни очинг, шунда барча нарса қандай ўзгаришини кўрасиз.<br>Оғир ўйлардан бироз дам олинг,  ўз ҳис-туйғуларингизга эрк беринг.</p></div></article>
+<article class="card" id="k7">
+<div class="head"><div class="medal"><span>7</span></div><div class="ttl"><h2>ҚУДРАТ</h2><p class="sub">ҲИМОЯ</p></div></div>
+<div class="txt"><p>Ҳаёт — бу бошқарув ва қатъиятни талаб қиладиган ҳаракатдир.</p>
+<p>Ушбу карта муваффақиятга эришиш учун мустаҳкам ирода, ҳис-туйғуларни назорат қилиш ва фаол ҳаракат қилиш зарурлигини кўрсатади.</p>
+<p>Интуициянгизга ишонган ва қобилиятларингни рўёбга чиқарган ҳолда, ўз салоҳиятингизни камолот сари йўналтиринг.</p>
+<p>Муваффақият ҳаракат, ижодкорлик ва профессионаллик орқали келади.</p></div></article>
+<article class="card" id="k15">
+<div class="head"><div class="medal"><span>15</span></div><div class="ttl"><h2>ИНСОН РУҲИНИНГ НУРИ ВА ҚОРОНҒИЛИГИ</h2></div></div>
+<div class="txt"><p>Ҳақиқий йўл мантиқ орқали эмас, балки Қалб орқали ўтади. Бу йўл иккиланиш ва қарама-қаршиликлар ҳолатидан чиқиб, бетарафлик ҳолатига ўтишни талаб қилади.</p>
+<p>Ўзингизни англаш ва тўғри танловни амалга ошириш учун ақл иллюзияларидан воз кечинг ва Қалб орқали уйғунликка эришинг.</p></div></article>
+<article class="card" id="k16">
+<div class="head"><div class="medal"><span>16</span></div><div class="ttl"><h2>ЎТИШ</h2><p class="sub">ҚАБУЛ ҚИЛИШ КУЧИ</p></div></div>
+<div class="txt"><p>Ҳаётдаги ҳар қандай ўзгариш — онгнинг янада юксак даражасига ва бирликка томон ташланган қадамдир.</p>
+<p>Бу ўтишнинг калити — янги эшикларни очиш имконини берувчи қабул қилиш кучидир.</p>
+<p>Эскиликнинг емирилиши — бу охир эмас, балки янада уйғун ва янги йўлга тайёргарликдир.</p></div></article>
+<article class="card" id="k8">
+<div class="head"><div class="medal"><span>8</span></div><div class="ttl"><h2>МЕҲР-ШАФҚАТ</h2><p class="sub">КАРМА</p></div></div>
+<div class="txt"><p>8-карта илоҳий тартиб-қоидалар тамойилларини очиб беради ва макрокосмосдан микрокосмосгача бўлган барча тизимлар тартиби билан уйғунликда яшашни ўргатади.</p>
+<p>Ушбу тартибларнинг бузилиши муайян оқибатларга олиб келади. Аммо уларни англаш ва қабул қилиш руҳий ўсишга, ички мувозанатга эришишга ҳамда ўз салоҳиятини очишга йўл очади.</p>
+<p>Севги, кечирим ва ҳаёт сабоқларини англаш орқали сиз ўзингизни трансформация қилишингиз, яширин имкониятларингизни озод этишингиз ва янги даражага кўтарилишингиз мумкин.</p></div></article>
+<article class="card" id="k17">
+<div class="head"><div class="medal"><span>17</span></div><div class="ttl"><h2>ЮЛДУЗЛАР ТАЪСИРИ</h2><p class="sub">ЯРАТУВЧИ МЕРКАБАСИ</p></div></div>
+<div class="txt"><p>Бу — имкониятлар ва орзу-истакларнинг амалга ошиши картасидир. Руҳингнинг бахт юлдузи.</p>
+<p>Худолар уларга илтижо ва ёлворишлар билан мурожаат қилаётган Руҳлар томон пастга тушмайдилар, балки Руҳнинг ўзи Худо томон юксалади.</p>
+<p>Руҳ юксалар экан, онг қатламлари бўйлаб ҳаракатланиб, Яратувчининг Буюк Юлдузи сари интилади.</p></div></article>
+<article class="card" id="k9">
+<div class="head"><div class="medal"><span>9</span></div><div class="ttl"><h2>ИЧКИ НУР</h2><p class="sub">РУҲ ТАНЛОВИ</p></div></div>
+<div class="txt"><p>9-карта инсонни руҳий уйғониш орқали қайта тирилтирадиган кўринмас, сирли Нурни ифодалайди.</p>
+<p>Бу — тўхташ, ўз ички оламингизга чуқур шўнғиш ва тафаккур қилиш вақти. Бу орқали сиз ички овозингизни эшитишингиз ва Руҳ билан бирлигингизни мустаҳкамлашингиз мумкин.</p>
+<p>Ақл сукути ва Қалб нури орқали ҳақиқий қайта туғилиш ва донолик намоён бўлади.</p></div></article>
+<article class="card" id="k18">
+<div class="head"><div class="medal"><span>18</span></div><div class="ttl"><h2>РУҲИЙ ОЗОДЛИК</h2><p class="sub">ХУДО САРИ ЙЎЛ</p></div></div>
+<div class="txt"><p class="q">«Руҳий озодликка эришган инсон ҳақиқатан ҳам муборак ва бахтлидир. Худо сари йўл — юксак билимлар ва камтарлик йўлидир».</p>
+<p>Олий Ибтидо сари йўл — бу Руҳий Алхимиядир. Бу жараёнда онгинг турли қатламлар бўйлаб ҳаракатланади ва ўзининг физик-кимёвий таркибини ўзгартиради.</p>
+<p>Руҳий озодликка эришиш орқали сиз маърифатга эришасиз.</p></div></article>
+<article class="card" id="k0">
+<div class="head"><div class="medal"><span>0</span></div><div class="ttl"><h2>МУҚАДДАС РУҲ</h2></div></div>
+<div class="txt"><p>Эфир Руҳи — бу тутиб бўлмайдиган, Ҳаётнинг энг нозик субстанциясидир.</p>
+<p>Яшаб қолиш учун курашиш, ерга оид билимларни қўлга киритиш ва Эго-Ақлни қондириш ортидан қувиш ўрнига, Севги орқали Юксак Билим сари юксалинг.</p>
+<p>Сизни ўзингизнинг ҳақиқий моҳиятингизни англаш сари етаклашмоқда.</p>
+<p>Онгинг шахсий эгодан чексиз Космик Онгга айланиб бормоқда.</p>
+<p>Ҳаётнинг бешинчи унсури — Эфир билан бирлашиш вақти келди.</p></div></article>
+  </main>
+</div>
+<footer aria-hidden="true">✦</footer>
+<script>
+(function(){
+  const c=document.getElementById('stars'),x=c.getContext('2d');
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let w,h,dpr,stars=[];
+  function size(){
+    dpr=Math.min(devicePixelRatio||1,2);w=innerWidth;h=innerHeight;
+    c.width=w*dpr;c.height=h*dpr;x.setTransform(dpr,0,0,dpr,0,0);
+    const n=Math.round(w*h/9000);
+    stars=Array.from({length:n},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.6+.4,
+      p:Math.random()*6.28,s:Math.random()*1.2+.4,big:Math.random()<.08}));
+  }
+  function sparkle(s,a){
+    x.globalAlpha=a;x.fillStyle='#fff';
+    if(s.big){
+      const L=s.r*5;x.beginPath();
+      x.moveTo(s.x,s.y-L);x.quadraticCurveTo(s.x,s.y,s.x+L,s.y);x.quadraticCurveTo(s.x,s.y,s.x,s.y+L);
+      x.quadraticCurveTo(s.x,s.y,s.x-L,s.y);x.quadraticCurveTo(s.x,s.y,s.x,s.y-L);x.fill();
+    }else{x.beginPath();x.arc(s.x,s.y,s.r,0,6.28);x.fill();}
+  }
+  function draw(t){
+    x.clearRect(0,0,w,h);
+    for(const s of stars){sparkle(s,reduce?.7:.35+.6*(.5+.5*Math.sin(s.p+t/1000*s.s)));}
+    if(!reduce)requestAnimationFrame(draw);
+  }
+  size();addEventListener('resize',()=>{size();if(reduce)draw(0)});requestAnimationFrame(draw);
+})();
+document.getElementById('draw').addEventListener('click',()=>{
+  const cards=[...document.querySelectorAll('.card')];
+  cards.forEach(c=>c.classList.remove('hl'));
+  const c=cards[Math.floor(Math.random()*cards.length)];
+  c.classList.add('hl');c.scrollIntoView({block:'start'});
+});
+</script>
+</body>
+</html>
